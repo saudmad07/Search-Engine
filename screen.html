@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Browser Page </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+  <h5>Browser Page </h5>
+<div class="navbar">
+  <a href="https://venus.cs.qc.cuny.edu/~ahsa8799/cs355/#home">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Course
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <a href="https://www.zybooks.com/">Zybook</a>
+    <a href="https://drive.google.com/drive/folders/1AsHhIFfQ3yNE_m2z4wswRfKh77K0UH9w">aterials</a>
+    <a href="https://www.w3schools.com">W3schools</a>
+    <a href="https://www.tophat.com">TopHat</a>
+    <a href="https://getbootstrap.com/docs/4.0/components/navs/ ">BootStrap</a>
+    </div>
+
+  
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Search
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="mySearchEngine.html">Search Engine</a>
+    </div>
+  </div>
+<div class="dropdown">
+  <button href="javascript:void(0)" class="dropbtn">Browser
+      <i class="fa fa-caret-down"></i>
+    </button>
+    
+    <div class="dropdown-content">
+      <a href="navigator.html">Navigator</a>
+      <a href="window.html">Window</a>
+      <a href="screen.html">Screen</a>
+      <a href="location.html">Location</a>
+      <a href="geolocation.html">Geo Location</a>
+    </div>
+    
+</div>
+<div class="dropdown">
+  <button class="dropbtn">AboutMe
+      <i class="fa fa-caret-down"></i>
+    </button>
+<div class="dropdown-content">
+      <a href="developers.html">Developer</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+</div>
+</div>
+<h2 style="text-align: center;"> Screen</h2>
+
+<hr>
+
+<h5> Window Screen Width </h5>
+
+<h5 id="demo"></h5>
+
+<script>
+document.getElementById("demo").innerHTML = 
+"Screen width is " + screen.width;
+</script>
+
+<hr>
+
+<h5> Window Screen Height </h5>
+
+<h5 id="demo2"></h5>
+
+<script>
+document.getElementById("demo2").innerHTML =
+"Screen Height: " + screen.height;
+</script>
+
+<hr>
+
+<h5> Window Screen Available Width </h5>
+
+<h5 id="demo3"></h5>
+
+<script>
+document.getElementById("demo3").innerHTML =
+"Available Screen Width: " + screen.availWidth;
+</script>
+
+<hr>
+
+<h5> Window Screen Available Height </h5>
+
+<h5 id="demo4"></h5>
+
+<script>
+document.getElementById("demo4").innerHTML =
+"Available Screen Height: " + screen.availHeight;
+</script>
+
+<hr>
+
+<h5> Window Screen Color Depth </h5>
+
+<h5 id="demo5"></h5>
+
+<script>
+document.getElementById("demo5").innerHTML = 
+"Screen Color Depth: " + screen.colorDepth;
+</script>
+
+<hr>
+
+<h5> Window Screen Pixel Depth </h5>
+
+<h5 id="demo6"></h5>
+
+<script>
+document.getElementById("demo6").innerHTML =
+"Screen Pixel Depth: " + screen.pixelDepth;
+</script>
+
+<hr>
+
+</body>
+</html>

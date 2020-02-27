@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Browser Page </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+  <h1>Browser Page </h1>
+<div class="navbar">
+  <a href="https://venus.cs.qc.cuny.edu/~ahsa8799/cs355/#home">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Course
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <a href="https://www.zybooks.com/">Zybook</a>
+    <a href="https://drive.google.com/drive/folders/1AsHhIFfQ3yNE_m2z4wswRfKh77K0UH9w">Materials</a>
+    <a href="https://www.w3schools.com">W3schools</a>
+    <a href="https://www.tophat.com">TopHat</a>
+    <a href="https://getbootstrap.com/docs/4.0/components/navs/ ">BootStrap</a>
+    </div>
+
+  
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Search
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="mySearchEngine.html">Search Engine</a>
+    </div>
+  </div>
+<div class="dropdown">
+  <button href="javascript:void(0)" class="dropbtn">Browser
+      <i class="fa fa-caret-down"></i>
+    </button>
+    
+    <div class="dropdown-content">
+      <a href="navigator.html">Navigator</a>
+      <a href="window.html">Window</a>
+      <a href="screen.html">Screen</a>
+      <a href="location.html">Location</a>
+      <a href="geolocation.html">Geo Location</a>
+    </div>
+    
+</div>
+<div class="dropdown">
+  <button class="dropbtn">AboutMe
+      <i class="fa fa-caret-down"></i>
+    </button>
+<div class="dropdown-content">
+      <a href="developers.html">Developer</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+</div>
+</div>
+<h1 style="text-align: center;"> Navigator</h1>
+
+<hr>
+
+<h2>  </h2>
+
+<h5 id="demo"></h5>
+
+<script>
+document.getElementById("demo").innerHTML = 
+"Browser Application Name <br>navigator.appName is: " + navigator.appName;
+</script>
+
+<hr>
+
+<h2></h2>
+
+<h5 id="demo2"></h5>
+
+<script>
+document.getElementById("demo2").innerHTML =
+"The Browser Engine <br> navigator.product is: " + navigator.product;
+</script>
+
+<hr>
+
+<h5 id="demo3"></h5>
+
+<script>
+document.getElementById("demo3").innerHTML =  
+"The Browser Version <br> navigator.appVersion is: " + navigator.appVersion;
+</script>
+
+<hr>
+
+<h5 id="demo4"></h5>
+
+<script>
+  document.getElementById("demo4").innerHTML = 
+  "The Browser Agent <br> navigator.userAgent is: " + navigator.userAgent;
+</script>
+
+<hr>
+
+<h5 id="demo5"></h5>
+
+<script>
+document.getElementById("demo5").innerHTML = 
+"The Browser Platform <br> navigator.platform is: " + navigator.platform;
+</script>
+
+<hr>
+
+<h5 id="demo6"></h5>
+
+<script>
+document.getElementById("demo6").innerHTML = 
+"The Browser Language <br> navigator.language is: " + navigator.language;
+</script>
+
+<hr>
+
+</body>
+</html>

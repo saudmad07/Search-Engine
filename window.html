@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Browser Page </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+  <h1> Browser Page </h1>
+<div class="navbar">
+  <a href="https://venus.cs.qc.cuny.edu/~ahsa8799/cs355/#home">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Course
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+    <a href="https://www.zybooks.com/">Zybook</a>
+    <a href="https://drive.google.com/drive/folders/1AsHhIFfQ3yNE_m2z4wswRfKh77K0UH9w">Materials</a>
+    <a href="https://www.w3schools.com">W3schools</a>
+    <a href="https://www.tophat.com">TopHat</a>
+    <a href="https://getbootstrap.com/docs/4.0/components/navs/ ">BootStrap</a>
+    </div>
+
+  
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Search
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="mySearchEngine.html">Search Engine</a>
+    </div>
+  </div>
+<div class="dropdown">
+  <button href="javascript:void(0)" class="dropbtn">Browser
+      <i class="fa fa-caret-down"></i>
+    </button>
+    
+    <div class="dropdown-content">
+      <a href="navigator.html">Navigator</a>
+      <a href="window.html">Window</a>
+      <a href="screen.html">Screen</a>
+      <a href="location.html">Location</a>
+      <a href="geolocation.html">Geo Location</a>
+    </div>
+    
+</div>
+<div class="dropdown">
+  <button class="dropbtn">AboutMe
+      <i class="fa fa-caret-down"></i>
+    </button>
+<div class="dropdown-content">
+      <a href="introduction.html">Developer</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+</div>
+</div>
+<h2 style="text-align: center;"> Window</h1>
+
+<h5 id="demo"></h5>
+
+<script>
+var w = window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+var h = window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
+
+var x = document.getElementById("demo");
+x.innerHTML = "Browser inner window width: " + w + "</br> Browser inner window height: " + h;
+</script>
+
+
+</body>
+</html>

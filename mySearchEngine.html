@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Search Engine Page </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+  <h1> Search Engine Page </h1>
+  <div class="navbar">
+    <a href="https://venus.cs.qc.cuny.edu/~ahsa8799/cs355/#home">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Course
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="https://www.zybooks.com/">Zybook</a>
+        <a href="https://drive.google.com/drive/folders/1AsHhIFfQ3yNE_m2z4wswRfKh77K0UH9w">Materials</a>
+        <a href="https://www.w3schools.com">W3schools</a>
+        <a href="https://www.tophat.com">TopHat</a>
+        <a href="https://getbootstrap.com/docs/4.0/components/navs/ ">BootStrap</a>
+      </div>
+
+
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Search
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="mySearchEngine.html">Search Engine</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button href="javascript:void(0)" class="dropbtn">Browser
+        <i class="fa fa-caret-down"></i>
+      </button>
+
+      <div class="dropdown-content">
+        <a href="navigator.html">Navigator</a>
+        <a href="window.html">Window</a>
+        <a href="screen.html">Screen</a>
+        <a href="developers.html">Location</a>
+        <a href="geolocation.html">Geo Location</a>
+      </div>
+
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">AboutMe
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="developers.html">Developer</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div style="margin-top:10px; margin-bottom:10px;">
+      <button type="button" onclick="selectAll()" style="margin-left:20px;">Select All</button>
+      <div class="dropdown">
+        <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Download</button>
+        <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
+          <a onclick="downloadCSV()">CSV</a>
+          <a onclick="downloadJSON()">JSON</a>
+          <a onclick="downloadXML()">XML</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <button type="button" onclick="unselectAll()" style="margin-left:37px;">Deselect All</button>
+      <div class="dropdown">
+        <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Upload</button>
+        <div class="dropdown-content" aria-labelledby="dropdownMenuButton">
+          <a onclick="document.getElementById('uploadCSV').click()">Upload CSV</a>
+          <a onclick="document.getElementById('uploadJSON').click()">Upload JSON</a>
+          <a onclick="document.getElementById('uploadXML').click()">Upload XML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group list-group-horizontal" style="margin-bottom:20px;">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" id="search" placeholder="Search Google" aria-label="Search">
+        <button class="btn btn-outline-secondary my-2 my-sm-0 active" onclick="Search(); return false;">Search</button>
+      </form>
+    </div>
+
+    <div id="results"></div>
+
+    <input id="uploadCSV" accept=".csv" type="file" name="name" style="display: none;" />
+    <input id="uploadJSON" accept=".json" type="file" name="name" style="display: none;" />
+    <input id="uploadXML" accept=".xml" type="file" name="name" style="display: none;" />
+
+  </div>
+
+  <script>
+    function selectAll() {
+      var results = document.querySelector("div#results").querySelectorAll("input.form-check-input");
+      for (var i = 0; i < results.length; i++) {
+        results[i].checked = true;
+      }
+    }
+
+    function unselectAll() {
+      var results = document.querySelector("div#results").querySelectorAll("input.form-check-input");
+      for (var i = 0; i < results.length; i++) {
+        results[i].checked = false;
+      }
+    }
+
+    function init(response) {
+      for (var i = 0; i < response.items.length; i++) {
+        addResult(response.items[i].title, response.items[i].displayLink, response.items[i].snippet);
+      }
+    }
+
+    function Search() {
+      var query = document.getElementById("search").value;
+      var searchAPI = document.createElement('script');
+      searchAPI.src =
+        `https://www.googleapis.com/customsearch/v1?key=${"AIzaSyAiVy5DTnrTsY4GP8ePSLbW-V-EPoKuHYA"}&cx=${"008020670299074427894:wokswdbkybg"}&q=` +
+        query + '&callback=init';
+      document.getElementsByTagName('head')[0].appendChild(searchAPI);
+    }
+
+    function downloadJSON() {
+      var filename = prompt("Please name the file", "JSON_Results");
+      var json = {
+        "Result": []
+      }
+      var checkedResults = document.querySelector("div#results").querySelectorAll("input.form-check-input");
+      for (var i = 0; i < checkedResults.length; i++) {
+        if (checkedResults[i].checked && checkedResults[i].nextSibling.querySelector("#url").textContent !=
+          "undefined") {
+          json["Result"].push({
+            "title": checkedResults[i].nextSibling.querySelector("#title").textContent,
+            "url": checkedResults[i].nextSibling.querySelector("#url").textContent,
+            "description": checkedResults[i].nextSibling.querySelector("#description").textContent
+          });
+        }
+      }
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
+      var downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute("href", dataStr);
+      downloadAnchorNode.setAttribute("download", filename + ".json");
+      document.body.appendChild(downloadAnchorNode);
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+    }
+
+    function downloadCSV() {
+      var filename = prompt("Please name the file", "CSV_Results");
+      var csv = "data:text/csv;charset=utf-8,";
+      var checkedResults = document.querySelector("div#results").querySelectorAll("input.form-check-input");
+      for (var i = 0; i < checkedResults.length; i++) {
+        if (checkedResults[i].checked && checkedResults[i].nextSibling.querySelector("#url").textContent !=
+          "undefined") {
+          csv = csv + checkedResults[i].nextSibling.querySelector("#title").textContent.replace(/\n/g, " ").replace(
+              /,/g, "-") + "," + checkedResults[i].nextSibling.querySelector("#url").textContent.replace(/\n/g, " ")
+            .replace(/,/g, "-") + "," + checkedResults[i].nextSibling.querySelector("#description").textContent.replace(
+              /\n/g, " ").replace(/,/g, "-") + '\n';
+        }
+      }
+      csv = encodeURI(csv);
+      var link = document.createElement('a');
+      link.setAttribute('href', csv);
+      link.setAttribute('download', filename + ".csv");
+      link.click();
+    }
+
+    function downloadXML() {
+      var filename = prompt("Please name the file", "XML_Results");
+      var xml = "<?xml version='1.0' encoding='UTF-8'?>\n<results>"
+      var checkedResults = document.querySelector("div#results").querySelectorAll("input.form-check-input");
+      for (var i = 0; i < checkedResults.length; i++) {
+        if (checkedResults[i].checked && checkedResults[i].nextSibling.querySelector("#url").textContent !=
+          "undefined") {
+          xml = xml + "\n   <result>\n      <title>" + checkedResults[i].nextSibling.querySelector("#title")
+            .textContent + "</title>\n      <url>" + checkedResults[i].nextSibling.querySelector("#url").textContent +
+            "</url>\n      <description>" + checkedResults[i].nextSibling.querySelector("#description").textContent +
+            "</description>\n   </result>";
+        }
+      }
+      xml = xml + "\n</results>"
+      console.log(xml);
+      var bb = new Blob([xml], {
+        type: 'text/plain'
+      });
+      var link = document.createElement('a');
+      link.setAttribute('href', window.URL.createObjectURL(bb));
+      link.setAttribute('download', filename + ".xml");
+      link.click();
+    }
+
+    function addResult(title, url, description) {
+      console.log(url);
+      var string =
+        "<div class='container p-2 my-2' id='result' style='border: 1px solid #007bff!important;margin-bottom:.25rem!important;'><div class='form-check'><input class='form-check-input' type='checkbox' value='' id='defaultCheck1'><label class='form-check-label list-group' for='defaultCheck1'><a id='title' target='_blank' href='http://" +
+        url + "' style='color:blue;'>" + title + "</a></br><a id='url' target='_blank' href='http://" + url +
+        "' style='color:blue;margin-left:20px;'>" + url +
+        "</a><p id='description' style='margin-left:20px;'>" + description + "</p></label></div></div>";
+      var results = document.getElementById("results");
+      var newResult = document.createElement("div");
+      newResult.innerHTML = string;
+      results.appendChild(newResult);
+    }
+
+    (function () {
+      function onChange(event) {
+        var reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+      }
+
+      function onReaderLoad(event) {
+        var obj = JSON.parse(event.target.result);
+        for (var i = 0; i < obj.Result.length; i++) {
+          addResult(obj.Result[i].title, obj.Result[i].url, obj.Result[i].description);
+        }
+      }
+      document.getElementById('uploadJSON').addEventListener('change', onChange);
+    }());
+
+    (function () {
+      function onChange(event) {
+        var reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+      }
+
+      function onReaderLoad(event) {
+        var results = event.target.result.split("\n");
+        for (var i = 0; i < results.length - 1; i++) {
+          var r = results[i].split(",");
+          addResult(r[0], r[1], r[2]);
+        }
+      }
+      document.getElementById('uploadCSV').addEventListener('change', onChange);
+    }());
+
+    (function () {
+      function onChange(event) {
+        var reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+      }
+
+      function onReaderLoad(event) {
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(event.target.result, "text/xml");
+        results = xmlDoc.getElementsByTagName("result");
+        for (var i = 0; i < results.length; i++) {
+          addResult(results[i].getElementsByTagName("title")[0].textContent, results[i].getElementsByTagName("url")[0]
+            .textContent, results[i].getElementsByTagName("description")[0].textContent);
+        }
+      }
+      document.getElementById('uploadXML').addEventListener('change', onChange);
+    }());
+  </script>
+
+</body>
+
+</html>
